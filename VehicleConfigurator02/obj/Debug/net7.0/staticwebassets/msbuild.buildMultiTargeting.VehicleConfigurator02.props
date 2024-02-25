@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\VehicleConfigurator02.props" />
+</Project>
