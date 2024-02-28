@@ -13,7 +13,6 @@ namespace VehicleConfigurator.Controllers
         public ModelController(IModel model)
         {
             this.model = model;
-
         }
 
         [HttpGet]

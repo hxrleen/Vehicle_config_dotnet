@@ -1,32 +1,31 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using VehicleConfiguration02;
 using VehicleConfigurator02.DbRepos;
 
-namespace VehicleConfiguration02
+namespace WebApp11.Repository
 {
+    public class UserRepositoryImpl : IUserRepository
+    {
+        private readonly ScottDbContext _context;
 
-        public class UserRepositoryImpl : IUserRepository
+        public UserRepositoryImpl(ScottDbContext context)
         {
-            private readonly IUserRepository _userRepository;
-
-            public UserRepositoryImpl(IUserRepository userRepository)
-            {
-                _userRepository = userRepository;
-            }
-
-            public async Task<bool> CreateUser(User user)
-            {
-                // Implement the logic to create user
-                await _userRepository.CreateUser(user);
-                return true;
-            }
-
-            public async Task<bool> ValidateUser(string username, string password)
-            {
-                // Implement the logic to validate user
-                return await _userRepository.ValidateUser(username, password);
-            }
+            _context = context;
         }
+
+     
+        public async Task<ActionResult<User>> Add(User user)
+        {
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+            return user;
+        }
+
+        public async Task<bool> ValidateUser(string Username, string Password)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == Username && u.Password == Password);
+            return user != null;
+        }
+
     }
+}

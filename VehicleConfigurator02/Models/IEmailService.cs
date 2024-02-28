@@ -1,7 +1,9 @@
-﻿namespace Vehicle_Configuration.Models
+﻿using Vehicle_Configuration.DbRepos;
+
+namespace Vehicle_Configuration.Models
 {
     public interface IEmailService
     {
-        Task SendEmailAsync(string toEmail, string subject, string body);
+        public Task SendEmailAsync(MailRequest mailRequest);
     }
 }

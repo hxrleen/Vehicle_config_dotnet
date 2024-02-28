@@ -25,5 +25,9 @@ namespace VehicleConfiguration02.Models
             }
             return components;
         }
+         public async  Task<Component> GetComponentByIdAsync(long id)
+        {
+            return await _context.Components.FirstOrDefaultAsync(x => x.CompId == id);
+        }
     }
 }

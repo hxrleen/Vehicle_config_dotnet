@@ -8,5 +8,7 @@ namespace VehicleConfiguration02.Models
     public interface IComponentService
     {
         Task<ActionResult<IEnumerable<Component>>> GetAllComponents();
+
+        Task<Component> GetComponentByIdAsync(long id);
     }
 }

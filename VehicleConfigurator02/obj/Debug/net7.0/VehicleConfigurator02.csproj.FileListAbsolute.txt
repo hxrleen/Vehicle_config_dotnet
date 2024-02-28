@@ -289,4 +289,9 @@ E:\VehicleConfiguration.net\myproject\VehicleConfigurator02\VehicleConfigurator0
 E:\VehicleConfiguration.net\myproject\VehicleConfigurator02\VehicleConfigurator02\obj\Debug\net7.0\VehicleConfigurator02.pdb
 E:\VehicleConfiguration.net\myproject\VehicleConfigurator02\VehicleConfigurator02\obj\Debug\net7.0\VehicleConfigurator02.genruntimeconfig.cache
 E:\VehicleConfiguration.net\myproject\VehicleConfigurator02\VehicleConfigurator02\obj\Debug\net7.0\ref\VehicleConfigurator02.dll
+E:\VehicleConfiguration.net\myproject\VehicleConfigurator02\VehicleConfigurator02\bin\Debug\net7.0\MailKit.dll
+E:\VehicleConfiguration.net\myproject\VehicleConfigurator02\VehicleConfigurator02\bin\Debug\net7.0\MimeKit.dll
+E:\VehicleConfiguration.net\myproject\VehicleConfigurator02\VehicleConfigurator02\bin\Debug\net7.0\System.Security.Cryptography.Pkcs.dll
+E:\VehicleConfiguration.net\myproject\VehicleConfigurator02\VehicleConfigurator02\bin\Debug\net7.0\runtimes\win\lib\net7.0\System.Security.Cryptography.Pkcs.dll
+E:\VehicleConfiguration.net\myproject\VehicleConfigurator02\VehicleConfigurator02\obj\Debug\net7.0\VehicleConfigurator02.sourcelink.json
 E:\VehicleConfiguration.net\myproject\VehicleConfigurator02\VehicleConfigurator02\obj\Debug\net7.0\VehicleC.050B75F2.Up2Date

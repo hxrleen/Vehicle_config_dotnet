@@ -27,5 +27,23 @@ namespace VehicleConfiguration.Controllers
             }
             return Ok(components);
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetComponentById(long id)
+        {
+            try
+            {
+                var component = await _service.GetComponentByIdAsync(id);
+                if (component == null)
+                {
+                    return NotFound();
+                }
+                return Ok(component);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
     }
 }

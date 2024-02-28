@@ -1,14 +1,12 @@
-﻿using System.Threading.Tasks;
-using VehicleConfiguration02.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 using VehicleConfigurator02.DbRepos;
 
-namespace VehicleConfiguration02
+namespace WebApp11.Repository
 {
     public interface IUserRepository
     {
-        Task<bool> CreateUser(User user);
+        Task<ActionResult<User>> Add(User user);
         Task<bool> ValidateUser(string username, string password);
+     
     }
-
-    
 }

@@ -1,36 +1,5 @@
 [
   {
-    "ContainingType": "VehicleConfigurator02.Controllers.AlternateComponentController",
-    "Method": "GetAlternateComponent",
-    "RelativePath": "{modelId}/{compId}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "modelId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "compId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "VehicleConfigurator02.DbRepos.AlternateComponent",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
     "ContainingType": "VehicleConfiguration.Controllers.ComponentController",
     "Method": "GetComponents",
     "RelativePath": "api/Component",
@@ -49,6 +18,22 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "VehicleConfiguration.Controllers.ComponentController",
+    "Method": "GetComponentById",
+    "RelativePath": "api/Component/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "vehicle_conf_dotnet.Controllers.ContactUsController",
@@ -236,16 +221,38 @@
     ]
   },
   {
-    "ContainingType": "WebApp11.Controllers.UserController",
-    "Method": "GetAllUsers",
-    "RelativePath": "api/User",
-    "HttpMethod": "GET",
+    "ContainingType": "Vehicle_Configuration.Controllers.SendMailController",
+    "Method": "SendEmail",
+    "RelativePath": "api/SendMail",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Vehicle_Configuration.DbRepos.MailRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApp11.Controllers.UserController",
+    "Method": "ValidateUser",
+    "RelativePath": "api/User/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user",
+        "Type": "VehicleConfigurator02.DbRepos.User",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[VehicleConfigurator02.DbRepos.User, VehicleConfigurator02, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Boolean",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -257,15 +264,15 @@
   },
   {
     "ContainingType": "WebApp11.Controllers.UserController",
-    "Method": "GetUserById",
-    "RelativePath": "api/User/{id}",
-    "HttpMethod": "GET",
+    "Method": "PostUser",
+    "RelativePath": "api/User/signup",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
+        "Name": "user",
+        "Type": "VehicleConfigurator02.DbRepos.User",
         "IsRequired": true
       }
     ],
@@ -282,13 +289,19 @@
     ]
   },
   {
-    "ContainingType": "VehicleConfigurator02.Controllers.VehicleDetailController",
-    "Method": "GetVehicleDetails",
-    "RelativePath": "api/VehicleDetail",
+    "ContainingType": "Vehicle_Conf.Controllers.VehicleDetailController",
+    "Method": "GetVehicleDetailsByCore",
+    "RelativePath": "api/VehicleDetail/ByCore/{modelId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "modelId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.IEnumerable\u00601[[VehicleConfigurator02.DbRepos.VehicleDetail, VehicleConfigurator02, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
@@ -302,22 +315,126 @@
     ]
   },
   {
-    "ContainingType": "VehicleConfigurator02.Controllers.VehicleDetailController",
-    "Method": "GetVehicleDetailById",
-    "RelativePath": "api/VehicleDetail/{id}",
+    "ContainingType": "Vehicle_Conf.Controllers.VehicleDetailController",
+    "Method": "GetVehicleDetailsByExterior",
+    "RelativePath": "api/VehicleDetail/ByExterior/{modelId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "modelId",
         "Type": "System.Int32",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "VehicleConfigurator02.DbRepos.VehicleDetail",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[VehicleConfigurator02.DbRepos.VehicleDetail, VehicleConfigurator02, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Vehicle_Conf.Controllers.VehicleDetailController",
+    "Method": "GetVehicleDetailsByInterior",
+    "RelativePath": "api/VehicleDetail/ByInterior/{modelId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "modelId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[VehicleConfigurator02.DbRepos.VehicleDetail, VehicleConfigurator02, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Vehicle_Conf.Controllers.VehicleDetailController",
+    "Method": "GetVehicleDetailsByModelId",
+    "RelativePath": "api/VehicleDetail/ByModel/{modelId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "modelId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[VehicleConfigurator02.DbRepos.VehicleDetail, VehicleConfigurator02, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Vehicle_Conf.Controllers.VehicleDetailController",
+    "Method": "GetVehicleDetailsByStandard",
+    "RelativePath": "api/VehicleDetail/ByStandard/{modelId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "modelId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[VehicleConfigurator02.DbRepos.VehicleDetail, VehicleConfigurator02, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Vehicle_Conf.Controllers.VehicleDetailController",
+    "Method": "GetPriceByModelId",
+    "RelativePath": "api/VehicleDetail/Price/{modelId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "modelId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Nullable\u00601[[System.Double, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

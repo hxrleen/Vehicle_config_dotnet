@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using VehicleConfiguration02;
-using VehicleConfiguration02.Models;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using VehicleConfigurator02.DbRepos;
+using WebApp11.Repository;
 
 namespace WebApp11.Controllers
 {
@@ -11,31 +11,26 @@ namespace WebApp11.Controllers
     {
         private readonly IUserRepository _userRepository;
 
-        public UserController(IUserRepository userRepository)
-        {
-            _userRepository = userRepository;
-        }
-
-        [HttpPost("createUser")]
-        public IActionResult CreateUser(User user)
-        {
-            // Implement the logic to create user
-            _userRepository.CreateUser(user);
-            return Ok("User created successfully");
-        }
-
-        [HttpPost("validateUser")]
-        public async Task<IActionResult> ValidateUser(User user)
-        {
-            // Implement the logic to validate user
-            if (await _userRepository.ValidateUser(user.Username, user.Password))
-            {
-                return Ok("User validated successfully");
-            }
-            else
-            {
-                return BadRequest("Invalid username or password");
-            }
-        }
+    
+    public UserController(IUserRepository userRepository)
+    {
+        _userRepository = userRepository;
     }
+
+        [HttpPost("login")]
+        public async Task<ActionResult<bool>> ValidateUser(User user)
+        {
+            var isValid = await _userRepository.ValidateUser(user.Username, user.Password);
+            return Ok(isValid);
+        }
+
+
+        [HttpPost("signup")]
+        public async Task<ActionResult<User>> PostUser(User user)
+        {
+            await _userRepository.Add(user);
+            return CreatedAtAction("PostUser", new { id = user.Id }, user);
+        }   
+    }
+
 }
