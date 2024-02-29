@@ -1,182 +1,31 @@
-# word-wrap [![NPM version](https://img.shields.io/npm/v/word-wrap.svg?style=flat)](https://www.npmjs.com/package/word-wrap) [![NPM monthly downloads](https://img.shields.io/npm/dm/word-wrap.svg?style=flat)](https://npmjs.org/package/word-wrap) [![NPM total downloads](https://img.shields.io/npm/dt/word-wrap.svg?style=flat)](https://npmjs.org/package/word-wrap) [![Linux Build Status](https://img.shields.io/travis/jonschlinkert/word-wrap.svg?style=flat&label=Travis)](https://travis-ci.org/jonschlinkert/word-wrap)
 
-> Wrap words to a specified length.
+# Project Name: Vehicle_Configurator
 
-## Install
+## Frontend: React-based User Interface
 
-Install with [npm](https://www.npmjs.com/):
+This repository contains the frontend codebase for Vehicle_Configurator, built using React. The frontend handles the user interface and interactions, providing a seamless experience for users.
 
-```sh
-$ npm install --save word-wrap
-```
+## Key Features:
 
-## Usage
+- **React Framework:** Utilizes the React library for building dynamic and responsive user interfaces.
 
-```js
-var wrap = require('word-wrap');
+- **Component-Based Architecture:** Organized into reusable components for maintainability and scalability.
 
-wrap('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.');
-```
+- **State Management:** Implements state management for efficient handling of application data and UI updates.
 
-Results in:
+- **API Integration:** Connects with the Spring Boot backend through RESTful APIs to fetch and update data.
 
-```
-  Lorem ipsum dolor sit amet, consectetur adipiscing
-  elit, sed do eiusmod tempor incididunt ut labore
-  et dolore magna aliqua. Ut enim ad minim veniam,
-  quis nostrud exercitation ullamco laboris nisi ut
-  aliquip ex ea commodo consequat.
-```
+- **Routing:** Utilizes React Router for client-side routing to create a smooth, single-page application experience.
 
-## Options
+## Getting Started:
 
-![image](https://cloud.githubusercontent.com/assets/383994/6543728/7a381c08-c4f6-11e4-8b7d-b6ba197569c9.png)
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/hxrleen/Vehicle_Configurator.git
 
-### options.width
+In the project directory, you can run:
 
-Type: `Number`
+### `npm start`
 
-Default: `50`
-
-The width of the text before wrapping to a new line.
-
-**Example:**
-
-```js
-wrap(str, {width: 60});
-```
-
-### options.indent
-
-Type: `String`
-
-Default: `` (none)
-
-The string to use at the beginning of each line.
-
-**Example:**
-
-```js
-wrap(str, {indent: '      '});
-```
-
-### options.newline
-
-Type: `String`
-
-Default: `\n`
-
-The string to use at the end of each line.
-
-**Example:**
-
-```js
-wrap(str, {newline: '\n\n'});
-```
-
-### options.escape
-
-Type: `function`
-
-Default: `function(str){return str;}`
-
-An escape function to run on each line after splitting them.
-
-**Example:**
-
-```js
-var xmlescape = require('xml-escape');
-wrap(str, {
-  escape: function(string){
-    return xmlescape(string);
-  }
-});
-```
-
-### options.trim
-
-Type: `Boolean`
-
-Default: `false`
-
-Trim trailing whitespace from the returned string. This option is included since `.trim()` would also strip the leading indentation from the first line.
-
-**Example:**
-
-```js
-wrap(str, {trim: true});
-```
-
-### options.cut
-
-Type: `Boolean`
-
-Default: `false`
-
-Break a word between any two letters when the word is longer than the specified width.
-
-**Example:**
-
-```js
-wrap(str, {cut: true});
-```
-
-## About
-
-### Related projects
-
-* [common-words](https://www.npmjs.com/package/common-words): Updated list (JSON) of the 100 most common words in the English language. Useful for… [more](https://github.com/jonschlinkert/common-words) | [homepage](https://github.com/jonschlinkert/common-words "Updated list (JSON) of the 100 most common words in the English language. Useful for excluding these words from arrays.")
-* [shuffle-words](https://www.npmjs.com/package/shuffle-words): Shuffle the words in a string and optionally the letters in each word using the… [more](https://github.com/jonschlinkert/shuffle-words) | [homepage](https://github.com/jonschlinkert/shuffle-words "Shuffle the words in a string and optionally the letters in each word using the Fisher-Yates algorithm. Useful for creating test fixtures, benchmarking samples, etc.")
-* [unique-words](https://www.npmjs.com/package/unique-words): Return the unique words in a string or array. | [homepage](https://github.com/jonschlinkert/unique-words "Return the unique words in a string or array.")
-* [wordcount](https://www.npmjs.com/package/wordcount): Count the words in a string. Support for english, CJK and Cyrillic. | [homepage](https://github.com/jonschlinkert/wordcount "Count the words in a string. Support for english, CJK and Cyrillic.")
-
-### Contributing
-
-Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](../../issues/new).
-
-### Contributors
-
-| **Commits** | **Contributor** | 
-| --- | --- |
-| 43 | [jonschlinkert](https://github.com/jonschlinkert) |
-| 2 | [lordvlad](https://github.com/lordvlad) |
-| 2 | [hildjj](https://github.com/hildjj) |
-| 1 | [danilosampaio](https://github.com/danilosampaio) |
-| 1 | [2fd](https://github.com/2fd) |
-| 1 | [toddself](https://github.com/toddself) |
-| 1 | [wolfgang42](https://github.com/wolfgang42) |
-| 1 | [zachhale](https://github.com/zachhale) |
-
-### Building docs
-
-_(This project's readme.md is generated by [verb](https://github.com/verbose/verb-generate-readme), please don't edit the readme directly. Any changes to the readme must be made in the [.verb.md](.verb.md) readme template.)_
-
-To generate the readme, run the following command:
-
-```sh
-$ npm install -g verbose/verb#dev verb-generate-readme && verb
-```
-
-### Running tests
-
-Running and reviewing unit tests is a great way to get familiarized with a library and its API. You can install dependencies and run tests with the following command:
-
-```sh
-$ npm install && npm test
-```
-
-### Author
-
-**Jon Schlinkert**
-
-* [github/jonschlinkert](https://github.com/jonschlinkert)
-* [twitter/jonschlinkert](https://twitter.com/jonschlinkert)
-
-### License
-
-Copyright © 2017, [Jon Schlinkert](https://github.com/jonschlinkert).
-Released under the [MIT License](LICENSE).
-
-***
-
-_This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.6.0, on June 02, 2017._
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.

@@ -1,81 +1,44 @@
 {
-  "name": "@aashutoshrathi/word-wrap",
-  "description": "Wrap words to a specified length.",
-  "version": "1.2.6",
-  "homepage": "https://github.com/aashutoshrathi/word-wrap",
-  "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
-  "contributors": [
-    "Aashutosh Rathi <aashutoshrathi@gmail.com>",
-    "Danilo Sampaio <danilo.sampaio@gmail.com> (localhost:8080)",
-    "Fede Ramirez <i@2fd.me> (https://2fd.github.io)",
-    "Joe Hildebrand <joe-github@cursive.net> (https://twitter.com/hildjj)",
-    "Jon Schlinkert <jon.schlinkert@sellside.com> (http://twitter.com/jonschlinkert)",
-    "Todd Kennedy (https://tck.io)",
-    "Waldemar Reusch (https://github.com/lordvlad)",
-    "Wolfgang Faust (http://www.linestarve.com)",
-    "Zach Hale <zachhale@gmail.com> (http://zachhale.com)"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/aashutoshrathi/word-wrap.git"
-  },
-  "bugs": {
-    "url": "https://github.com/aashutoshrathi/word-wrap/issues"
-  },
-  "license": "MIT",
-  "files": [
-    "index.js",
-    "index.d.ts"
-  ],
-  "main": "index.js",
-  "engines": {
-    "node": ">=0.10.0"
+  "name": "vehicleconfigfront",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.8.2",
+    "mdb-react-ui-kit": "^7.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^5.0.1",
+    "react-router-dom": "^6.22.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "test": "mocha"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "devDependencies": {
-    "gulp-format-md": "^0.1.11",
-    "mocha": "^10.2.0"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
-  "keywords": [
-    "break",
-    "carriage",
-    "line",
-    "new-line",
-    "newline",
-    "return",
-    "soft",
-    "text",
-    "word",
-    "word-wrap",
-    "words",
-    "wrap"
-  ],
-  "typings": "index.d.ts",
-  "verb": {
-    "toc": false,
-    "layout": "default",
-    "tasks": [
-      "readme"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
     ],
-    "plugins": [
-      "gulp-format-md"
-    ],
-    "lint": {
-      "reflinks": true
-    },
-    "related": {
-      "list": [
-        "common-words",
-        "shuffle-words",
-        "unique-words",
-        "wordcount"
-      ]
-    },
-    "reflinks": [
-      "verb",
-      "verb-generate-readme"
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
     ]
   }
 }
