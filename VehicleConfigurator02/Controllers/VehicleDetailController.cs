@@ -81,7 +81,7 @@ namespace Vehicle_Conf.Controllers
             return vehicleDetails;
         }
 
-        [HttpGet("ByStandard/{modelId}")]
+        [HttpGet("ByStandard/{modelId}")] 
         public async Task<ActionResult<IEnumerable<VehicleDetail>?>> GetVehicleDetailsByStandard(int modelId)
         {
             var standardComponent = "s";

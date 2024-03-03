@@ -13,29 +13,47 @@ namespace Vehicle_Conf.Models
             _context = context;
         }
 
-
-        public async Task<ActionResult<IEnumerable<VehicleDetail>?>> GetVehicleDetailsByModelId(int modelId)
-        {
-            return await _context.VehicleDetails
-                                  .Where(v => v.ModelId == modelId)
-                                  .ToListAsync();
-        }
-
         public async Task<ActionResult<IEnumerable<VehicleDetail>?>> GetVehicleDetailsByInterior(int modelId, string interiorComponent)
         {
             var vehicleDetails = await _context.VehicleDetails
+                                                .Include(vd => vd.Comp) // Include Comp navigation property
                                                 .Where(v => v.ModelId == modelId && v.CompType == interiorComponent)
+                                                .Select(vd => new VehicleDetail
+                                                {
+                                                    ConfigId = vd.ConfigId,
+                                                    CompType = vd.CompType,
+                                                    IsConfigurable = vd.IsConfigurable,
+                                                    CompId = vd.CompId,
+                                                    ModelId = vd.ModelId,
+                                                    Comp = vd.Comp, // Assign Comp directly without condition
+                                                    Model = null
+                                                })
                                                 .ToListAsync();
+
             return vehicleDetails;
         }
+
 
         public async Task<ActionResult<IEnumerable<VehicleDetail>?>> GetVehicleDetailsByExterior(int modelId, string exteriorComponent)
         {
             var vehicleDetails = await _context.VehicleDetails
+                                                .Include(vd => vd.Comp) // Include Comp navigation property
                                                 .Where(v => v.ModelId == modelId && v.CompType == exteriorComponent)
+                                                 .Select(vd => new VehicleDetail
+                                                 {
+                                                     ConfigId = vd.ConfigId,
+                                                     CompType = vd.CompType,
+                                                     IsConfigurable = vd.IsConfigurable,
+                                                     CompId = vd.CompId,
+                                                     ModelId = vd.ModelId,
+                                                     Comp = vd.Comp, // Assign Comp directly without condition
+                                                     Model = null
+                                                 })
                                                 .ToListAsync();
+
             return vehicleDetails;
         }
+
 
         public async Task<ActionResult<double?>> GetPriceByModelId(int modelId)
         {
@@ -51,7 +69,18 @@ namespace Vehicle_Conf.Models
         public async Task<ActionResult<IEnumerable<VehicleDetail>?>> GetVehicleDetailsByCore(int modelId, string coreComponent)
         {
             var vehicleDetails = await _context.VehicleDetails
+                                                .Include(vd => vd.Comp)
                                                 .Where(v => v.ModelId == modelId && v.CompType == coreComponent)
+                                                 .Select(vd => new VehicleDetail
+                                                 {
+                                                     ConfigId = vd.ConfigId,
+                                                     CompType = vd.CompType,
+                                                     IsConfigurable = vd.IsConfigurable,
+                                                     CompId = vd.CompId,
+                                                     ModelId = vd.ModelId,
+                                                     Comp = vd.Comp, // Assign Comp directly without condition
+                                                     Model = null
+                                                 })
                                                 .ToListAsync();
 
             if (vehicleDetails == null || !vehicleDetails.Any())
@@ -65,8 +94,19 @@ namespace Vehicle_Conf.Models
         public async Task<ActionResult<IEnumerable<VehicleDetail>?>> GetVehicleDetailsByStandard(int modelId, string standardComponent)
         {
             var vehicleDetails = await _context.VehicleDetails
-                                               .Where(v => v.ModelId == modelId && v.CompType == standardComponent)
-                                               .ToListAsync();
+                                                .Include(vd => vd.Comp) // Include Comp navigation property
+                                                .Where(v => v.ModelId == modelId && v.CompType == standardComponent)
+                                                 .Select(vd => new VehicleDetail
+                                                 {
+                                                     ConfigId = vd.ConfigId,
+                                                     CompType = vd.CompType,
+                                                     IsConfigurable = vd.IsConfigurable,
+                                                     CompId = vd.CompId,
+                                                     ModelId = vd.ModelId,
+                                                     Comp = vd.Comp, // Assign Comp directly without condition
+                                                     Model = null
+                                                 })
+                                                .ToListAsync();
 
             if (vehicleDetails == null || !vehicleDetails.Any())
             {
@@ -76,14 +116,9 @@ namespace Vehicle_Conf.Models
             return vehicleDetails;
         }
 
-        public async Task<ActionResult<IEnumerable<VehicleDetail>>> GetComponentByModelId(int modelId)
+        public Task<ActionResult<IEnumerable<VehicleDetail>?>> GetVehicleDetailsByModelId(int modelId)
         {
-            return await _context.VehicleDetails
-                                 .Where(v => v.ModelId == modelId && v.CompId != null)
-                                 .ToListAsync();
+            throw new NotImplementedException();
         }
-
-        
     }
 }
-

@@ -46,7 +46,10 @@ namespace Vehicle_Configuration.Models
             }
 
             // Include  the user's message
-            builder.HtmlBody = $" Enquiry Of: {mailRequest.Body}";
+            builder.HtmlBody =
+                $"Thanks for reaching out to us. We appreciate your interest in our business." +
+                $" any further questions, feel free to call us at 6445 ." +
+                $"Sincerely.: {mailRequest.Body}";
 
             email.Body = builder.ToMessageBody();
 
