@@ -10,7 +10,7 @@ const ConfiguratorContainer = (props) => {
   const [manufacturers, setManufacturers] = useState([]);
   const [models, setModels] = useState([]);
   const [selectedModel, setSelectedModel] = useState("");
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(8);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,8 +31,8 @@ const ConfiguratorContainer = (props) => {
       .then((response) => response.json())
       .then((data) => {
 
-      setManufacturers(data.value);
-        
+        setManufacturers(data.value);
+
       })
       .catch((error) => {
         console.error("Error fetching manufacturers:", error);
@@ -65,7 +65,7 @@ const ConfiguratorContainer = (props) => {
     const manufacturerId = event.target.value;
     setSelectedManufacturer(manufacturerId);
     setModels([]); // Clear models list
-    console.log(selectedSegment,manufacturerId);
+    console.log(selectedSegment, manufacturerId);
     fetchModels(selectedSegment, manufacturerId);
   };
 
@@ -81,7 +81,7 @@ const ConfiguratorContainer = (props) => {
 
   const handleGoButtonClick = () => {
     if (selectedModel && selectedSegment && selectedManufacturer) {
-      console.log(selectedManufacturer,selectedSegment,selectedManufacturer)
+      console.log(selectedManufacturer, selectedSegment, selectedManufacturer)
 
       const url = `/Defaultconfig/${selectedModel}/${quantity}`;
       navigate(url);
@@ -113,9 +113,8 @@ const ConfiguratorContainer = (props) => {
             </select>
           </div>
           <div
-            className={`col-xs-12 col-md-3 ${
-              selectedSegment ? "" : "disabled"
-            }`}>
+            className={`col-xs-12 col-md-3 ${selectedSegment ? "" : "disabled"
+              }`}>
             <h3>Manufacturer</h3>
             <select
               className="custom-select"
@@ -132,9 +131,8 @@ const ConfiguratorContainer = (props) => {
           </div>
 
           <div
-            className={`col-xs-12 col-md-3 ${
-              selectedManufacturer ? "" : "disabled"
-            }`}>
+            className={`col-xs-12 col-md-3 ${selectedManufacturer ? "" : "disabled"
+              }`}>
             <h3>Model</h3>
             <select
               className="custom-select"
@@ -156,7 +154,7 @@ const ConfiguratorContainer = (props) => {
               className="form-control"
               value={quantity}
               onChange={handleQuantityChange}
-              min="1"
+              min="8"
             />
           </div>
           {/* Other dropdowns */}

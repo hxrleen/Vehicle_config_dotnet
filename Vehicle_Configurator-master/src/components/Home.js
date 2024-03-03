@@ -56,54 +56,58 @@ function Home() {
         <div className="reviews-container">
           <div className="review-card">
             <img
-              src="https://static01.nyt.com/newsgraphics/2020/11/12/fake-people/4b806cf591a8a76adfc88d19e90c8c634345bf3d/fallbacks/mobile-02.jpg"
+              src="images/ponkshe.PNG"
               alt="Customer 1"
               className="review-image"
             />
             <div className="review-content">
-              <h3>Customer 1</h3>
+              <h3>Jayant Ponkshe</h3>
               <div className="star-rating">
                 &#9733;&#9733;&#9733;&#9733;&#9733;
               </div>
               <p>
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                euismod ligula vel justo sodales, nec tincidunt orci ultricies."
+                "“Most Knowledgeable”
+                I’ve purchased many cars over the years - Vehicle
+                Configurator is by far the easiest Highly recommend
+                working with Vehicle Confiugurator to buy your next vehicle!"
               </p>
             </div>
           </div>
 
           <div className="review-card">
             <img
-              src="https://static01.nyt.com/newsgraphics/2020/11/12/fake-people/4b806cf591a8a76adfc88d19e90c8c634345bf3d/fallbacks/mobile-04.jpg"
+              src="images/mam.PNG"
               alt="Customer 2"
               className="review-image"
             />
             <div className="review-content">
-              <h3>Customer 2</h3>
+              <h3>Ketki Acharya</h3>
               <div className="star-rating">
                 &#9733;&#9733;&#9733;&#9733;&#9733;
               </div>
               <p>
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                euismod ligula vel justo sodales, nec tincidunt orci ultricies."
+                "“Great Experience!”
+                Great buying experience. Great cars with rare features.
+                I would definitely go back for my next car."
               </p>
             </div>
           </div>
 
           <div className="review-card">
             <img
-              src="https://static01.nyt.com/newsgraphics/2020/11/12/fake-people/4b806cf591a8a76adfc88d19e90c8c634345bf3d/fallbacks/mobile-05.jpg"
+              src="images/java sir.PNG"
               alt="Customer 3"
               className="review-image"
             />
             <div className="review-content">
-              <h3>Customer 3</h3>
+              <h3>Nitin Vijaykar</h3>
               <div className="star-rating">
                 &#9733;&#9733;&#9733;&#9733;&#9733;
               </div>
               <p>
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                euismod ligula vel justo sodales, nec tincidunt orci ultricies."
+                "“Customer Testimonial”
+                Vehicle conf -- Thank you for a great deal on  Audi allroad.It was absolutely
+                flawless just as decribed. I must admit that the concpet of purchasing a high-end vehicle "
               </p>
             </div>
           </div>

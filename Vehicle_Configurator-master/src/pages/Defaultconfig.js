@@ -1,27 +1,26 @@
-
-import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import "./DefaultConfiguration.css";
 import InvoiceGenerator from "./InvoiceGenerator";
-import CustomizationButtons from "../pages/CustomizationButtons";
-import CoreConfiguration from "../components/CoreConfiguration";
-import StandardConfiguration from "../components/StandardConfiguration";
-import InteriorConfiguration from "../components/InteriorConfiguration";
-import ExteriorConfiguration from "../components/ExteriorConfiguration";
 
-function Customize() {
+function Defaultconfig() {
   const { model_id, quantity } = useParams();
   const navigate = useNavigate();
 
-  const [carDetails, setCarDetails] = useState([]);
+  const [carDetails, setCarDetails] = useState({
+    id: null,
+    modelName: "",
+    price: 0,
+    segmentMaster: { id: null, name: "" },
+    mfgMaster: { id: null, name: "" },
+    imagePath: "",
+  });
 
   const [standardFeatures, setStandardFeatures] = useState([]);
+  const [coreFeatures, setCoreFeatures] = useState([]);
   const [interiorFeatures, setInteriorFeatures] = useState([]);
   const [exteriorFeatures, setExteriorFeatures] = useState([]);
   const [showInvoice, setShowInvoice] = useState(false);
-  const [showCustomization, setShowCustomization] = useState(true); // Set to true by default
-  const [selectedConfiguration, setSelectedConfiguration] = useState(null);
-  const [selectedOptions, setSelectedOptions] = useState([]);
   const [price, setPrice] = useState(0);
 
   useEffect(() => {
@@ -30,6 +29,7 @@ function Customize() {
         const response = await fetch(`https://localhost:7139/api/Model/${model_id}`);
         const data = await response.json();
         setCarDetails(data);
+        console.log(data); // Assuming the API returns an array with a single object
       } catch (error) {
         console.error("Error fetching car details:", error);
       }
@@ -40,9 +40,18 @@ function Customize() {
         const response = await fetch(`https://localhost:7139/api/VehicleDetail/ByStandard/${model_id}`);
         const data = await response.json();
         setStandardFeatures(data);
-        console.log(data[0]);
       } catch (error) {
         console.error("Error fetching standard features:", error);
+      }
+    };
+
+    const fetchCoreFeatures = async () => {
+      try {
+        const response = await fetch(`https://localhost:7139/api/VehicleDetail/ByCore/${model_id}`);
+        const data = await response.json();
+        setCoreFeatures(data);
+      } catch (error) {
+        console.error("Error fetching core features:", error);
       }
     };
 
@@ -51,7 +60,6 @@ function Customize() {
         const response = await fetch(`https://localhost:7139/api/VehicleDetail/ByInterior/${model_id}`);
         const data = await response.json();
         setInteriorFeatures(data);
-        console.log(data[0]);
       } catch (error) {
         console.error("Error fetching interior features:", error);
       }
@@ -62,7 +70,6 @@ function Customize() {
         const response = await fetch(`https://localhost:7139/api/VehicleDetail/ByExterior/${model_id}`);
         const data = await response.json();
         setExteriorFeatures(data);
-        console.log(data[0]);
       } catch (error) {
         console.error("Error fetching exterior features:", error);
       }
@@ -73,39 +80,28 @@ function Customize() {
         const response = await fetch(`https://localhost:7139/api/VehicleDetail/Price/${model_id}`);
         const data = await response.json();
         setPrice(data);
-        console.log(data);
       } catch (error) {
         console.error("Error fetching price:", error);
       }
     };
 
+    // Call all the fetch functions
     fetchCarDetails();
     fetchStandardFeatures();
+    fetchCoreFeatures();
     fetchInteriorFeatures();
     fetchExteriorFeatures();
     fetchPrice();
   }, [model_id]);
 
-  const handleConfigurationClick = (configuration) => {
-    setSelectedConfiguration(configuration);
+  const handleConfigure = () => {
+    navigate(`/Customize/${model_id}/${quantity}`); // Assuming "/configure" is the correct route
   };
-
-  const handleOptionSelect = (option, value) => {
-    setSelectedOptions((prevOptions) => ({
-      ...prevOptions,
-      [selectedConfiguration]: {
-        ...prevOptions[selectedConfiguration],
-        [option]: value,
-      },
-    }));
-  };
-
   const handleConfirmOrder = () => {
     // Confirm order logic
     alert("Order confirmed!");
     setShowInvoice(true); // Set state to show InvoiceGenerator
   };
-
   return (
     <div>
       <div className="default-configuration">
@@ -122,63 +118,49 @@ function Customize() {
               adipiscing elit. Nulla euismod ligula vel justo sodales, nec
               tincidunt orci ultricies.
             </p>
+
+            <h4>Core Features:</h4>
+            <ul>
+              {coreFeatures.map((feature, index) => (
+                <li key={index}>{feature.comp.compName}</li>
+              ))}
+            </ul>
             <h4>Standard Features:</h4>
             <ul>
               {standardFeatures.map((feature, index) => (
-                <li key={index}>{feature.compType}</li>
+                <li key={index}>{feature.comp.compName}</li>
               ))}
             </ul>
-            <h4>Interior features</h4>
+
+            <h4>Interior Features:</h4>
             <ul>
               {interiorFeatures.map((feature, index) => (
-                <li key={index}>{feature.compType}</li>
+                <li key={index}>{feature.comp.compName}</li>
               ))}
             </ul>
-            <h4>Exterior features</h4>
+
+            <h4>Exterior Features:</h4>
             <ul>
               {exteriorFeatures.map((feature, index) => (
-                <li key={index}>{feature.compType}</li>
+                <li key={index}>{feature.comp.compName}</li>
               ))}
             </ul>
 
             <h4>Price: {price}</h4>
 
             <div className="buttons">
-              {showCustomization && (
-                <CustomizationButtons
-                  onCoreClick={() => handleConfigurationClick("core")}
-                  onStandardClick={() => handleConfigurationClick("standard")}
-                  onInteriorClick={() => handleConfigurationClick("interior")}
-                  onExteriorClick={() => handleConfigurationClick("exterior")}
-                />
-              )}
+            <button onClick={handleConfirmOrder}>Confirm</button>
+
+              <button onClick={handleConfigure}>Configure</button>
+
+              {/* Cancel button with Link for navigation */}
+              <Link to="/home">
+                <button>Cancel</button>
+              </Link>
             </div>
           </div>
         </div>
       </div>
-      <div
-        style={{
-          width: "40%",
-          margin: "0 auto",
-          display: "flex",
-          marginBottom: "20px",
-          justifyContent: "center",
-          alignItems: "center",
-        }}>
-        {selectedConfiguration === "core" && (
-          <CoreConfiguration onSelect={handleOptionSelect} />
-        )}
-        {selectedConfiguration === "standard" && (
-          <StandardConfiguration onSelect={handleOptionSelect} />
-        )}
-        {selectedConfiguration === "interior" && (
-          <InteriorConfiguration onSelect={handleOptionSelect} />
-        )}
-        {selectedConfiguration === "exterior" && (
-          <ExteriorConfiguration onSelect={handleOptionSelect} />
-        )}
-      </div>
-
       {showInvoice && (
         <InvoiceGenerator
           orderSize={quantity}
@@ -190,4 +172,4 @@ function Customize() {
   );
 }
 
-export default Customize;
+export default Defaultconfig;

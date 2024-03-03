@@ -66,7 +66,7 @@ const Login = () => {
             <label>Username:</label>
             <input type="text" name="username" onChange={handleChange} />
             <label>Password:</label>
-            <input type="text" name="password" onChange={handleChange} />
+            <input type="password" name="password" onChange={handleChange} />
           </div>
 
           <button type="submit">Submit</button>
