@@ -36,7 +36,6 @@ public partial class ScottDbContext : DbContext
     public virtual DbSet<VehicleDetail> VehicleDetails { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseMySQL("Server=localhost;Database=vehicle;user id=root;password=Shu@1234");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -121,7 +120,7 @@ public partial class ScottDbContext : DbContext
             entity.Property(e => e.ModelId).HasColumnName("model_id");
         });
 
-        modelBuilder.Entity<Manufacturer>(entity =>
+        modelBuilder.Entity<Manufacturer>(entity =>   //fluent api to configure mapping bw class and table
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
